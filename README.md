@@ -19,5 +19,5 @@ At a high level we are looking for:
 - A clear README with instructions on how to run the application
 - Well structured code
 - A good level of understanding of React
-- Descriptive and regulor commit messages
+- Descriptive and regular commit messages
 - Good use of Javascript data manipulation methods
