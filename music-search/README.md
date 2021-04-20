@@ -1,5 +1,5 @@
 # Music Search Tech Test
-The task comes with a setup react app with JSON data pre loaded and ready to use in the main app. The challenge it to allow the user to search the music data.
+The task comes with a setup react app with JSON data pre loaded and ready to use in the main app. The challenge is to allow the user to search the music data.
 In one hour, please complete as many of the tasks as possible. We do not expect you to finish this test, just do as much as possible in the time frame.
 
 ## Setup
