@@ -4,96 +4,34 @@
     "year": 1987,
     "artist": "Rick Astley",
     "title": "Never Gonna Give You Up",
-    "genres": ["Electronic", "Pop"],
-    "tracklist": [
-      {
-        "title": "Never Gonna Give You Up",
-        "duration": "3:32"
-      },
-      {
-        "title": "Never Gonna Give You Up (Instrumental)",
-        "duration": "3:30"
-      }
-    ]
+    "genres": ["Electronic", "Pop"]
   },
   {
     "id": 249501,
     "year": 1998,
     "artist": "Madonna",
     "title": "Frozen",
-    "genres": ["Electronic"],
-    "tracklist": [
-      {
-        "title": "Frozen (Extended Club Mix)",
-        "duration": "11:17"
-      },
-      {
-        "title": "Frozen (Stereo MC's Mix)",
-        "duration": "5:45"
-      },
-      {
-        "title": "Frozen (Meltdown Mix - Long Version)",
-        "duration": "8:10"
-      }
-    ]
+    "genres": ["Electronic"]
   },
   {
     "id": 249507,
     "year": 1988,
     "artist": "Bam Bam",
     "title": "Give It To Me (I'm A Man Baby)",
-    "genres": ["Electronic"],
-    "tracklist": [
-      {
-        "title": "Give It To Me (Remix Radio Edit)",
-        "duration": "3:31"
-      },
-      {
-        "title": "Give It To Me (Original Version)",
-        "duration": "3:34"
-      }
-    ]
+    "genres": ["Electronic"]
   },
   {
     "id": 249510,
     "year": 1988,
     "artist": "The Communards",
     "title": "There's More To Love",
-    "genres": ["Electronic", "Pop"],
-    "tracklist": [
-      {
-        "title": "There's More To Love",
-        "duration": ""
-      },
-      {
-        "title": "Zing Went The Strings Of My Heart",
-        "duration": ""
-      }
-    ]
+    "genres": ["Electronic", "Pop"]
   },
   {
     "id": 249450,
     "year": 2003,
     "artist": "Cool Hipnoise",
     "title": "Select Cuts Showcase & More",
-    "genres": ["Electronic"],
-    "tracklist": [
-      {
-        "title": "Entre O Sol E A Terra",
-        "duration": "4:29"
-      },
-      {
-        "title": "Entre O Sol E A Terra Dub",
-        "duration": "4:26"
-      },
-      {
-        "title": "Lis-Kgn-Hav",
-        "duration": "3:17"
-      },
-      {
-        "title": "Come As You Are (Dub Version)",
-        "duration": "3:50"
-      }
-    ]
+    "genres": ["Electronic"]
   }
 ]
