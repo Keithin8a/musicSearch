@@ -4,8 +4,8 @@ In one hour, please complete as many of the tasks as possible. We do not expect 
 
 ## Setup
 1. Clone this repository
-2. Run `yarn`
-3. Run `yarn start`
+2. Install dependencies
+3. `package.json` contains a script named `start` run this script to start the project.
 
 ## The Test
 The test uses styled-components and example of this can be seen in `App.styles.js`
