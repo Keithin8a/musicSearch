@@ -12,11 +12,12 @@ The test uses styled-components and example of this can be seen in `App.styles.j
 If you are not familiar with styled components feel free to use `css`. Creating `App.css` and importing into main app will work by default.
 
 Using the data provided in `music.json`:
+
 1. Display a list of all the music data provided. For each list item display the Artist, Title, Year and Genre. Don't worry about the Track list for now
 2. Add a text input above the list of music.
-3. Use the input to filter the data shown to the user as they type filter using the `title` of the song.
+3. Use the input to filter the data shown to the user. As they type filter the list to show only items where the `title` of the song contains the text currently entered in the input.
 4. Expand the search capabilities so the input also searches `artist`, `year` and `genre`
-5. Improve performance by not searching the tracks until the user has finished typing
+5. Improve performance by not filtering the list until the user has stopped typing (ie they have not typed a character for 500ms)
 
 ## Review Criteria
 
