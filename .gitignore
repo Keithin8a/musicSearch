@@ -1,1 +1,5 @@
-music-search.zip
+node_modules
+dist
+.cache
+node_modules
+dist
