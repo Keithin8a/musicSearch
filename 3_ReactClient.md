@@ -1,7 +1,7 @@
 # React Client
 
 Develop the following features one at a time.
-We don't expect you to complete them all, but want to see how you work through each task.
+We're interested in seeing how you work through each task more than whether you complete all of them in the allotted time.
 
 1. Display the list of songs from `song-data.js`.
    Each item in the list should display the `title`, `artist`, `year`, and `genres` and have some basic styling to visually separate the songs.
