@@ -5,20 +5,23 @@ const prettifyGenres = (genres: Song["genres"]): string => {
     return genres.join(', ');
 }
 
-interface SongData {
+interface Props {
     songData: Song;
+    rowIndex: number;
 }
 
-const SongRecord = (props: SongData) => {
+const SongRecord = (props: Props) => {
     const { id, artist, title, year, genres } = props.songData;
 
+    const rowClassName = props.rowIndex % 2 ? "evenRow" : "oddRow"
+
     return (
-        <li key={id}>
-            <div>{id}</div>
-            <div>{artist}</div>
-            <div>{title}</div>
-            <div>{year}</div>
-            <div>{prettifyGenres(genres)}</div>
+        <li key={id} className={`item ${rowClassName}`}>
+            <p className='itemDetail'>{id}</p>
+            <p className='itemDetail'>{artist}</p>
+            <p className='itemDetail'>{title}</p>
+            <p className='itemDetail'>{year}</p>
+            <p className='itemDetail'>{prettifyGenres(genres)}</p>
         </li>
     )
 };

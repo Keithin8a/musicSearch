@@ -42,11 +42,24 @@
     padding: 5px;
 }
 
-ul li {
-    display: flex;
-    margin: 10px;
+ul {
+    padding: 0;
 }
 
-ul li>* {
+.item {
+    display: flex;
+    padding: 10px;
+}
+
+.oddRow {
+    background-color: #61dafb;
+}
+
+.evenRow {
+    background-color: lavender;
+}
+
+.itemDetail {
+    flex: 1;
     padding: 5px;
 }

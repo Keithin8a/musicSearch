@@ -3,6 +3,7 @@ import './App.css';
 import './song-data'
 import { Song, songs } from './song-data';
 import SongRecord from './components/songRecord';
+import Layout from './components/layout';
 
 function App() {
     const [displayData, setDisplayData] = useState<Song[]>(songs)
@@ -36,17 +37,19 @@ function App() {
     }
 
     return (
-        <div className="App">
-            <div className='buttonContainer'>
-                <label htmlFor='search'>Search</label>
-                <input name='search' type='text' onChange={handleChange}></input>
-            </div>
-            <ul>
-                {
-                    displayData.map((song) => <SongRecord songData={song} />)
-                }
-            </ul>
-        </div>
+        <Layout>
+            <section role='search' className='buttonContainer'>
+                <label htmlFor='searchMusic'>Search For Music</label>
+                <input name='searchMusic' type='search' role='searchbox' placeholder='Search for title, artist, year or genre' onChange={handleChange}></input>
+            </section>
+            <section>
+                <ul>
+                    {
+                        displayData.map((song, index) => <SongRecord songData={song} rowIndex={index} />)
+                    }
+                </ul>
+            </section>
+        </Layout>
     );
 }
 
