@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEventHandler, FocusEventHandler, MouseEventHandler, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import './song-data'
@@ -7,7 +7,7 @@ import { Song } from './song-data';
 
 
 function App() {
-    const [songData, setSongData] = useState([
+    const [songData, setSongData] = useState<Song[]>([
         {
             "id": 249504,
             "artist": "Rick Astley",
@@ -44,7 +44,8 @@ function App() {
             "genres": ["Electronic"]
         }
     ])
-    const [filteredSongData, setFilteredSongData] = useState([])
+    const [filteredSongData, setFilteredSongData] = useState<Song[]>([])
+    const [searchTerm, setSearchTerm] = useState('');
 
     const prettifyGenres = (genres: Song["genres"]): string => {
         return genres.join(', ');
@@ -60,18 +61,28 @@ function App() {
         </li>
     }
 
-    const filterSearch = (): any => {
+    const filterSearch: MouseEventHandler<HTMLButtonElement> = (e) => {
+        if (searchTerm === '') {
+            //sort out validation message
+            return
+        }
 
+        const tempSongData = songData.filter((song) => song.title === searchTerm)
+        setFilteredSongData(tempSongData)
     }
 
+    const handleSearchInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        const inputValue = e.target.value;
 
+        setSearchTerm(inputValue.trim());
+    }
 
     return (
         <div className="App">
             <div className='buttonContainer'>
                 <label htmlFor='search'>Search</label>
-                <input name='search' type='text'></input>
-                <button>Search</button>
+                <input name='search' type='text' value={searchTerm} onChange={handleSearchInputChange}></input>
+                <button onClick={filterSearch}>Search</button>
             </div>
             <ul>
                 {
