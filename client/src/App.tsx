@@ -53,7 +53,7 @@ function App() {
             return
         }
 
-        const tempSongData = songData.filter((song) => song.title === searchTerm)
+        const tempSongData = songData.filter((song) => song.title.toLowerCase() === searchTerm.toLowerCase())
         setFilteredSongData(tempSongData)
     }
 
