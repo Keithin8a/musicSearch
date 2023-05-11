@@ -24,10 +24,15 @@ function App() {
         setDisplayData(filteredSongs)
     }
 
+    let filterTimeout: ReturnType<typeof setTimeout>;
+
     const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const inputValue = e.target.value;
 
-        filterSearch(inputValue.trim());
+        clearTimeout(filterTimeout);
+        filterTimeout = setTimeout(() => {
+            filterSearch(inputValue.trim());
+        }, 500)
     }
 
     return (
