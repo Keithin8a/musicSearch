@@ -1,8 +1,8 @@
-import React, { ChangeEventHandler, FocusEventHandler, MouseEventHandler, useState } from 'react';
-import logo from './logo.svg';
+import { ChangeEventHandler, MouseEventHandler, useState } from 'react';
 import './App.css';
 import './song-data'
 import { Song } from './song-data';
+import SongRecord from './components/songRecord';
 
 
 
@@ -47,20 +47,6 @@ function App() {
     const [filteredSongData, setFilteredSongData] = useState<Song[]>([])
     const [searchTerm, setSearchTerm] = useState('');
 
-    const prettifyGenres = (genres: Song["genres"]): string => {
-        return genres.join(', ');
-    }
-
-    const displaySongData = (songData: Song): JSX.Element => {
-        return <li key={songData.id}>
-            <div>{songData.id}</div>
-            <div>{songData.artist}</div>
-            <div>{songData.title}</div>
-            <div>{songData.year}</div>
-            <div>{prettifyGenres(songData.genres)}</div>
-        </li>
-    }
-
     const filterSearch: MouseEventHandler<HTMLButtonElement> = (e) => {
         if (searchTerm === '') {
             //sort out validation message
@@ -87,8 +73,8 @@ function App() {
             <ul>
                 {
                     filteredSongData.length > 0 ?
-                        filteredSongData.map((song) => displaySongData(song)) :
-                        songData.map((song) => displaySongData(song))
+                        filteredSongData.map((song) => <SongRecord songData={song} />) :
+                        songData.map((song) => <SongRecord songData={song} />)
                 }
             </ul>
         </div>
