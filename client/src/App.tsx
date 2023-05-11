@@ -53,7 +53,14 @@ function App() {
             return
         }
 
-        const tempSongData = songData.filter((song) => song.title.toLowerCase() === searchTerm.toLowerCase())
+        const searchTermLower = searchTerm.toLowerCase();
+
+        const tempSongData = songData.filter(({ title, artist, year, genres }) =>
+            title.toLowerCase() === searchTermLower
+            || artist.toLowerCase() === searchTermLower
+            || year.toString() === searchTermLower
+            || genres.some((genre) => genre.toLowerCase() === searchTermLower)
+        )
         setFilteredSongData(tempSongData)
     }
 
