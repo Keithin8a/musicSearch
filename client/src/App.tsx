@@ -1,87 +1,44 @@
-import { ChangeEventHandler, MouseEventHandler, useState } from 'react';
+import { ChangeEventHandler, useState } from 'react';
 import './App.css';
 import './song-data'
-import { Song } from './song-data';
+import { Song, songs } from './song-data';
 import SongRecord from './components/songRecord';
 
-
-
 function App() {
-    const [songData, setSongData] = useState<Song[]>([
-        {
-            "id": 249504,
-            "artist": "Rick Astley",
-            "title": "Never Gonna Give You Up",
-            "year": 1987,
-            "genres": ["Electronic", "Pop"]
-        },
-        {
-            "id": 249501,
-            "artist": "Madonna",
-            "title": "Frozen",
-            "year": 1998,
-            "genres": ["Electronic"]
-        },
-        {
-            "id": 249507,
-            "artist": "Bam Bam",
-            "title": "Give It To Me (I'm A Man Baby)",
-            "year": 1988,
-            "genres": ["Electronic"]
-        },
-        {
-            "id": 249510,
-            "artist": "The Communards",
-            "title": "There's More To Love",
-            "year": 1988,
-            "genres": ["Electronic", "Pop"]
-        },
-        {
-            "id": 249450,
-            "artist": "Cool Hipnoise",
-            "title": "Select Cuts Showcase & More",
-            "year": 2003,
-            "genres": ["Electronic"]
-        }
-    ])
-    const [filteredSongData, setFilteredSongData] = useState<Song[]>([])
-    const [searchTerm, setSearchTerm] = useState('');
+    const [displayData, setDisplayData] = useState<Song[]>(songs)
 
-    const filterSearch: MouseEventHandler<HTMLButtonElement> = (e) => {
+    const filterSearch = (searchTerm: string) => {
         if (searchTerm === '') {
-            //sort out validation message
+            setDisplayData(songs)
             return
         }
 
         const searchTermLower = searchTerm.toLowerCase();
 
-        const tempSongData = songData.filter(({ title, artist, year, genres }) =>
-            title.toLowerCase() === searchTermLower
-            || artist.toLowerCase() === searchTermLower
-            || year.toString() === searchTermLower
-            || genres.some((genre) => genre.toLowerCase() === searchTermLower)
+        const filteredSongs = songs.filter(({ title, artist, year, genres }) =>
+            title.toLowerCase().includes(searchTermLower)
+            || artist.toLowerCase().includes(searchTermLower)
+            || year.toString().includes(searchTermLower)
+            || genres.some((genre) => genre.toLowerCase().includes(searchTermLower))
         )
-        setFilteredSongData(tempSongData)
+        setDisplayData(filteredSongs)
     }
 
-    const handleSearchInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const inputValue = e.target.value;
 
-        setSearchTerm(inputValue.trim());
+        filterSearch(inputValue.trim());
     }
 
     return (
         <div className="App">
             <div className='buttonContainer'>
                 <label htmlFor='search'>Search</label>
-                <input name='search' type='text' value={searchTerm} onChange={handleSearchInputChange}></input>
-                <button onClick={filterSearch}>Search</button>
+                <input name='search' type='text' onChange={handleChange}></input>
             </div>
             <ul>
                 {
-                    filteredSongData.length > 0 ?
-                        filteredSongData.map((song) => <SongRecord songData={song} />) :
-                        songData.map((song) => <SongRecord songData={song} />)
+                    displayData.map((song) => <SongRecord songData={song} />)
                 }
             </ul>
         </div>
