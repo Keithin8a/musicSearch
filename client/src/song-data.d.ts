@@ -1,9 +1,13 @@
-export interface Song {
-  id: number;
-  artist: string;
-  title: string;
-  year: number;
-  genres: string[];
-}
+declare namespace SongData {
+    export interface Song {
+        id: number;
+        artist: string;
+        title: string;
+        year: number;
+        genres: string[];
+    }
 
-export declare const songs: Song[];
+    export interface MusicSearchPostResponse {
+        data: Song[]
+    }
+}

@@ -1,28 +1,28 @@
-import { ChangeEventHandler, useState } from 'react';
+import { ChangeEventHandler, useEffect, useState } from 'react';
 import './App.css';
-import './song-data'
-import { Song, songs } from './song-data';
 import SongRecord from './components/songRecord';
 import Layout from './components/layout';
 
+const musicSearchUrl = "http://127.0.0.1:8000/musicSearch"
+
+
 function App() {
-    const [displayData, setDisplayData] = useState<Song[]>(songs)
+    const [displayData, setDisplayData] = useState<SongData.Song[]>([])
+    const [error, setError] = useState<string | undefined>();
 
-    const filterSearch = (searchTerm: string) => {
-        if (searchTerm === '') {
-            setDisplayData(songs)
-            return
+    const fetchData = async (searchTerm?: string) => {
+        try {
+            const response = await fetch(musicSearchUrl, {
+                method: 'POST',
+                body: JSON.stringify({ searchTerm: searchTerm || '' }),
+                mode: 'cors'
+            })
+
+            const data: SongData.MusicSearchPostResponse = (await response.json())
+            setDisplayData(data.data);
+        } catch {
+            setError("There has been an unexpected error fetching the song data")
         }
-
-        const searchTermLower = searchTerm.toLowerCase();
-
-        const filteredSongs = songs.filter(({ title, artist, year, genres }) =>
-            title.toLowerCase().includes(searchTermLower)
-            || artist.toLowerCase().includes(searchTermLower)
-            || year.toString().includes(searchTermLower)
-            || genres.some((genre) => genre.toLowerCase().includes(searchTermLower))
-        )
-        setDisplayData(filteredSongs)
     }
 
     let filterTimeout: ReturnType<typeof setTimeout>;
@@ -32,9 +32,13 @@ function App() {
 
         clearTimeout(filterTimeout);
         filterTimeout = setTimeout(() => {
-            filterSearch(inputValue.trim());
+            fetchData(inputValue.trim());
         }, 500)
     }
+
+    useEffect(() => {
+        fetchData()
+    }, [])
 
     return (
         <Layout>
@@ -42,6 +46,11 @@ function App() {
                 <label htmlFor='searchMusic'>Search For Music</label>
                 <input name='searchMusic' type='search' role='searchbox' placeholder='Search for title, artist, year or genre' onChange={handleChange}></input>
             </section>
+            {error && (
+                <section role='alert'>
+                    <p>{error}</p>
+                </section>)
+            }
             <section>
                 <ul>
                     {

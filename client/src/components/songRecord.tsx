@@ -1,12 +1,11 @@
 import '../App.css';
-import { Song } from '../song-data';
 
-const prettifyGenres = (genres: Song["genres"]): string => {
+const prettifyGenres = (genres: SongData.Song["genres"]): string => {
     return genres.join(', ');
 }
 
 interface Props {
-    songData: Song;
+    songData: SongData.Song;
     rowIndex: number;
 }
 

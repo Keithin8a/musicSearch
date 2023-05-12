@@ -1,4 +1,4 @@
-export const songs = [
+module.exports.songs = [
   {
     "id": 249504,
     "artist": "Rick Astley",
