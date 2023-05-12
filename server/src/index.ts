@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { ErrorRequestHandler } from 'express'
 import musicSearchRoutes from './routes/musicSearch'
 
 const app = express();
@@ -13,7 +13,15 @@ app.use((req, res, next) => {
     next();
 });
 
+const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
+    console.error(err.stack)
+    res.status(500).send('Something broke!')
+}
+
+app.use(errorHandler)
+
 app.use('/musicSearch', musicSearchRoutes)
+
 
 app.listen(port, () => {
     console.log(`Music Search is listening on port ${port}`)

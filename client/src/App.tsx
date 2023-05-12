@@ -10,11 +10,14 @@ function App() {
     const [displayData, setDisplayData] = useState<SongData.Song[]>([])
     const [error, setError] = useState<string | undefined>();
 
-    const fetchData = async (searchTerm?: string) => {
+    const fetchData = async (searchTerm?: string, page?: number) => {
         try {
             const response = await fetch(musicSearchUrl, {
                 method: 'POST',
-                body: JSON.stringify({ searchTerm: searchTerm || '' }),
+                body: JSON.stringify({
+                    searchTerm: searchTerm || '',
+                    page: page || 1
+                }),
                 mode: 'cors'
             })
 

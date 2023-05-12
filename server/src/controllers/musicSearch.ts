@@ -4,15 +4,23 @@ import { Song, songs } from '../../data/song-data'
 
 export interface SearchMusicReq {
     searchTerm: string
+    page: any
 }
 
 export interface SearchMusicRes {
     data: Song[]
+    pageSize: number
+    page: number
 }
+
+const pageSize = 2
 
 export const searchMusic: RequestHandler<SearchMusicReq, SearchMusicRes> = async (req, res, next) => {
     let data = songs
-    const { searchTerm } = req.params;
+    console.log("hello")
+    const { searchTerm, page } = req.params;
+
+    console.log(page);
 
     if (searchTerm !== '') {
         const searchTermLower = searchTerm.toLowerCase();
@@ -26,8 +34,12 @@ export const searchMusic: RequestHandler<SearchMusicReq, SearchMusicRes> = async
         data = filteredSongs
     }
 
+    const offset = (page - 1) * pageSize
+
     res.status(200);
     res.json({
-        data: data,
+        data: data.slice(offset, pageSize),
+        pageSize,
+        page
     })
 }
